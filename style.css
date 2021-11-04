@@ -16,47 +16,82 @@
     --card_tb_height:40px;
     --card_tb_width:50px;
 }
+#large_card{
+    border-radius: 2%;
+    border-style: solid;
+    border-width: 0.5em;
+    display:none;
+    position:absolute;
+    left:2%;
+    top:25%;
+    height:45%;
+    width:15%;
+    background-color:var(--color_1);
+    font-size: 2em;
+    font-weight: bold;
+}
+.large_img{
+    position: relative;
+    left:5%;
+    width:90%;
+    height:40%;
+    background-color: white;
+}
+.large_txt{
+    position: relative;
+    top:2%;
+    left:5%;
+    width:90%;
+    height:45%;
+    background-color: var(--color_t_white);
+    font-size: 0.75em;
+    font-weight: normal;
+}
 
-.card_border{
-	background-color:black;
-	height:var(--card_height);
-	width:var(--card_width);
-    border-radius: 5px;
+.large_card_2{
+    border-radius: 20px;
+    background-color:var(--color_2);
+}
+.large_card_3{
+    border-radius: 20px;
+    background-color:var(--color_3);
 }
 .card_base_1, .card_base_2, .card_base_3{
+    border-radius: 2%;
+    border-style: solid;
+    border-width: 1em;
 	background-color:var(--color_1);
 	height:var(--card_b_height);
 	width:var(--card_b_width);
 	position:relative;
-	top:5px;
-	left:5px;
     font-size: 0.4em;
     user-select: none;
 }
 .card_base_2{
 	background-color:var(--color_2);
-
 }
 .card_base_3{
 	background-color:var(--color_3);
 }
 .card_image{
     background-color: rgb(255, 255, 255,0.8);
-    height:var(--card_i_height);
-	width:var(--card_i_width);
+    height:35%;
+	width:90%;
     position:relative;
 	top:0px;
-	left:5px;
+	left:5%;
+    pointer-events: none;
 }
 .card_txt_bkg{
     background-color:var(--color_t_white);
-    height:var(--card_tb_height);
-	width:var(--card_tb_width);
+    height:50%;
+	width:90%;
     position:relative;
 	top:3px;
-	left:5px;
+	left:5%;
     font-size: 0.9em;
     user-select: none;
+    pointer-events: none;
 }
 body{
     background-color: var(--field_color_1);
@@ -131,6 +166,10 @@ body{
     bottom:0px;
 }
 #deck_1, #deck_2{
+    background-color:black;
+	height:var(--card_height);
+	width:var(--card_width);
+    border-radius: 5px;
     position:absolute;
     display:flex;
     justify-content: center;

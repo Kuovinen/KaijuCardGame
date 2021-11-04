@@ -1,0 +1,202 @@
+:root{
+	--color_1:rgb(65, 97, 22);
+	--color_2:rgb(247, 65, 20);
+    --color_3:rgb(0, 179, 179);
+    --color_t_white:rgb(255, 255, 255, 0.5);
+    --field_color_1:rgb(53, 53, 53);
+    --field_color_2:rgb(20, 20, 20);
+    --field_color_1b:rgb(35, 35, 35,0.6);
+    --field_color_2b:rgb(20, 20, 20,0.6);
+    --card_height:100px;
+    --card_width:70px;
+    --card_b_height:90px;
+    --card_b_width:60px;
+    --card_i_height:35px;
+    --card_i_width:50px;
+    --card_tb_height:40px;
+    --card_tb_width:50px;
+}
+
+.card_border{
+	background-color:black;
+	height:var(--card_height);
+	width:var(--card_width);
+    border-radius: 5px;
+}
+.card_base_1, .card_base_2, .card_base_3{
+	background-color:var(--color_1);
+	height:var(--card_b_height);
+	width:var(--card_b_width);
+	position:relative;
+	top:5px;
+	left:5px;
+    font-size: 0.4em;
+    user-select: none;
+}
+.card_base_2{
+	background-color:var(--color_2);
+
+}
+.card_base_3{
+	background-color:var(--color_3);
+}
+.card_image{
+    background-color: rgb(255, 255, 255,0.8);
+    height:var(--card_i_height);
+	width:var(--card_i_width);
+    position:relative;
+	top:0px;
+	left:5px;
+}
+.card_txt_bkg{
+    background-color:var(--color_t_white);
+    height:var(--card_tb_height);
+	width:var(--card_tb_width);
+    position:relative;
+	top:3px;
+	left:5px;
+    font-size: 0.9em;
+    user-select: none;
+}
+body{
+    background-color: var(--field_color_1);
+}
+.field{
+    position: absolute;
+    height:150px;
+    left:1%;
+    width:98%;
+    background-color: var(--field_color_2);
+}
+#field_1{
+    top:0px;
+}
+#field_2{
+    bottom:0px;
+}
+#b1d, #b2d, #b3d, #b4d, #b5d, #b6d, #b7d, #b8d{
+  background-color:var(--field_color_1b);  
+}
+#b1l, #b2l, #b3l, #b4l, #b5l, #b6l, #b7l, #b8l{
+   background-color:var(--field_color_2b);  
+}
+#b9d, #b10d,#b11d, #b12d, #b13d, #b14d, #b15d{
+    background-color:var(--field_color_1);  
+}
+#b9l, #b10l,#b11l, #b12l, #b13l, #b14l, #b15l{
+      background-color:var(--field_color_2);  
+}
+
+#b1d, #b2d, #b3d, #b4d, #b5d, #b6d, #b7d, #b8d,#b1l, #b2l, #b3l, #b4l, #b5l, #b6l, #b7l, #b8l{
+    display:inline-block;
+    vertical-align: bottom;
+    margin-left: 5px;
+    height:60%;
+    width:20%;
+    position:relative;
+}   
+#b3d, #b3l, #b5d, #b5l{
+    height:80%;
+}
+#b2d, #b2l,#b7d,#b7l{
+    height:100%;
+}  
+  
+
+#b9d, #b10d,#b11d, #b12d, #b13d, #b14d, #b15d, #b9l, #b10l,#b11l, #b12l, #b13l, #b14l, #b15l{
+    margin-left: 5px;
+    height:20%;
+    width:17%;
+    position:relative;
+}
+#b9d,#b9l,#b13d,#b13l{
+    height:30%;
+}
+#b11d,#b11l,#b14d,#b14l{
+    height:45%;
+}
+.counter{
+    position:absolute;
+    right:0px;
+    height:50%;
+    width:15%;
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+#counter2a,#counter2b{
+    bottom:150px;
+}
+#counter1a,#counter1b{
+    bottom:0px;
+}
+#deck_1, #deck_2{
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    left:75%;
+    top:15%;
+    color:rgb(255, 255, 255, 0.1);
+    font-size:5em;
+    user-select: none;
+}
+#side1, #side2{
+    position:absolute;
+    background-color: var(--field_color_2);
+    top:0px;
+    width:1%;
+    height:100%;
+}
+#side1{
+    left:0px; 
+
+}
+#side2{
+    right:0px;
+
+}
+#hand_field_1, #hand_field_2{
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left:35%;
+  top:10%; 
+  height:80%;
+  width:30%;
+  background-color: rgb(255, 255, 255,0.1);
+  border-radius: 5px; 
+}
+
+#outcome{
+    position: absolute;
+    left:30%;
+    top:40%;
+    height:20%;
+    width:40%;
+    display:none;
+    flex-direction:column ;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255,0.2);
+    border-radius: 10px;
+    color:rgb(0, 0, 0, 0.9);
+    font-size: 2em;
+    
+}
+#discard_pile_1, #discard_pile_2{
+    background-color: rgb(255, 255, 255,0.1);
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    left:20%;
+    top:15%;
+    color:rgba(0, 0, 0, 0.1);
+    font-size:5em;
+    user-select: none;
+    border-radius: 5px;
+    height:var(--card_height);
+	width:var(--card_width);
+}

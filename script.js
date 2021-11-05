@@ -45,11 +45,8 @@ let card_bases=[
         y:"100px"    
     }
 ]
-let cards=document.getElementById("deck_2");
-let deck=create_deck(card_bases);
-let card=deck.length;
-cards.innerHTML=card;
-cards.onclick=function(){draw_card(deck);};
+let player_deck_div,deck,card,reset_button;
+
 
 //DECK
 function create_deck(cards){
@@ -60,12 +57,10 @@ function create_deck(cards){
     }
     return deck;
 }
-
 //LIFE
 function establish_life_points(suffix){
    // 
 }
-
 //SEARCH
 function find_card_by_code(code){
     for(let i=0;i<card_bases.length;i++){
@@ -110,7 +105,7 @@ function draw_card(deck){
         else{
             obj=deck[card-1];
             card--;
-            cards.innerHTML=card;  //cards is global (deck)
+            player_deck_div.innerHTML=card;  //cards is global (deck)
             let card_base = document.createElement("div")
             let card_image = document.createElement("div")
             let card_txt_bkg = document.createElement("div")
@@ -128,3 +123,19 @@ function draw_card(deck){
         }
     }
 }
+function reset_game(){
+    deck=create_deck(card_bases);
+    card=deck.length;
+    player_deck_div.innerHTML=card;
+    player_deck_div.onclick=function(){draw_card(deck);};
+    let field=document.getElementById("hand_field_2");
+    field.innerHTML="";
+}
+player_deck_div=document.getElementById("deck_2");
+
+reset_button=document.getElementById("reset");
+reset_button.onclick=reset_game;
+deck=create_deck(card_bases);
+card=deck.length;
+player_deck_div.innerHTML=card;
+player_deck_div.onclick=function(){draw_card(deck);};

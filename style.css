@@ -239,3 +239,12 @@ body{
     height:var(--card_height);
 	width:var(--card_width);
 }
+#reset{
+    border:none;
+    background-color:var(--field_color_1);
+    position:absolute;
+    top:2%;
+    left:3%;
+    border-radius: 5px;
+    
+}

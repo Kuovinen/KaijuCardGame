@@ -127,7 +127,7 @@ body{
     vertical-align: bottom;
     margin-left: 5px;
     height:60%;
-    width:20%;
+    width:10%;
     position:relative;
 }   
 #b3d, #b3l, #b5d, #b5l{
@@ -141,7 +141,7 @@ body{
 #b9d, #b10d,#b11d, #b12d, #b13d, #b14d, #b15d, #b9l, #b10l,#b11l, #b12l, #b13l, #b14l, #b15l{
     margin-left: 5px;
     height:20%;
-    width:17%;
+    width:11%;
     position:relative;
 }
 #b9d,#b9l,#b13d,#b13l{
@@ -156,7 +156,7 @@ body{
     height:50%;
     width:15%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items:flex-end;
 }
 #counter2a,#counter2b{

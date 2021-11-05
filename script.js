@@ -123,6 +123,7 @@ function draw_card(deck){
         }
     }
 }
+//RESET
 function reset_game(){
     deck=create_deck(card_bases);
     card=deck.length;
@@ -131,6 +132,35 @@ function reset_game(){
     let field=document.getElementById("hand_field_2");
     field.innerHTML="";
 }
+//LIFE COUNTER FILL
+function counter_fill(suffix){   //sufix = either "d" for player or "l" for opponent;
+    let counter1;
+    let counter2;
+    if(suffix=="d"){
+        console.log("yay!");
+        counter1=document.getElementById("counter1a");
+        counter2=document.getElementById("counter1b");
+    }
+    else if(suffix=="l"){
+        counter1=document.getElementById("counter2a");
+        counter2=document.getElementById("counter2b");
+    }
+    else{console.log("got invalid lifecounter div element suffix!");}
+    for(i=0;i<8;i++){
+        let div=document.createElement('div');
+        div.id=`b`+(i+1)+suffix;
+        counter1.appendChild(div);
+    }
+    for(i=9;i<16;i++){
+        let div=document.createElement('div');
+        div.id=`b`+(i)+suffix;
+        counter2.appendChild(div);
+    }
+}
+
+
+counter_fill("d");
+counter_fill("l");
 player_deck_div=document.getElementById("deck_2");
 
 reset_button=document.getElementById("reset");

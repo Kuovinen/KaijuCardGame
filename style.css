@@ -110,16 +110,16 @@ body{
     bottom:0px;
 }
 #b1d, #b2d, #b3d, #b4d, #b5d, #b6d, #b7d, #b8d{
-  background-color:var(--field_color_1b);  
+  background-color:var(--field_color_2b);  
 }
 #b1l, #b2l, #b3l, #b4l, #b5l, #b6l, #b7l, #b8l{
-   background-color:var(--field_color_2b);  
+   background-color:var(--field_color_1b);  
 }
 #b9d, #b10d,#b11d, #b12d, #b13d, #b14d, #b15d{
-    background-color:var(--field_color_1);  
+    background-color:var(--field_color_2);  
 }
 #b9l, #b10l,#b11l, #b12l, #b13l, #b14l, #b15l{
-      background-color:var(--field_color_2);  
+      background-color:var(--field_color_1);  
 }
 
 #b1d, #b2d, #b3d, #b4d, #b5d, #b6d, #b7d, #b8d,#b1l, #b2l, #b3l, #b4l, #b5l, #b6l, #b7l, #b8l{
@@ -239,10 +239,10 @@ body{
     height:var(--card_height);
 	width:var(--card_width);
 }
-#reset{
+#reset, #addHP, #removeHP{
     border:none;
     background-color:var(--field_color_1);
-    position:absolute;
+    position:relative;
     top:2%;
     left:3%;
     border-radius: 5px;

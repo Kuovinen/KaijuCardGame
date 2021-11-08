@@ -45,7 +45,7 @@ let card_bases=[
         y:"100px"    
     }
 ]
-let player_deck_div,deck,card,reset_button;
+let player_deck_div,deck,card,reset_button,add_button,remove_button;
 
 
 //DECK
@@ -56,10 +56,6 @@ function create_deck(cards){
         deck.push(cards[num]);
     }
     return deck;
-}
-//LIFE
-function establish_life_points(suffix){
-   // 
 }
 //SEARCH
 function find_card_by_code(code){
@@ -88,7 +84,7 @@ function zoom(card){
 
 }
 //HIDE ZOOM
-function unzoom(card){
+function unzoom(){
     let largeCard=document.getElementById("large_card");
     largeCard.style.display="none";
 }
@@ -131,40 +127,103 @@ function reset_game(){
     player_deck_div.onclick=function(){draw_card(deck);};
     let field=document.getElementById("hand_field_2");
     field.innerHTML="";
+    document.getElementById("counter1a").innerHTML="";
+    document.getElementById("counter1b").innerHTML="";
+    document.getElementById("counter2a").innerHTML="";
+    document.getElementById("counter2b").innerHTML="";
+    counter_fill("d");
+    counter_fill("l");
 }
-//LIFE COUNTER FILL
+//LIFE COUNTER FILL              //html id is either b1d-b15d  or b1l-b15l
 function counter_fill(suffix){   //sufix = either "d" for player or "l" for opponent;
     let counter1;
     let counter2;
     if(suffix=="d"){
-        console.log("yay!");
-        counter1=document.getElementById("counter1a");
-        counter2=document.getElementById("counter1b");
-    }
-    else if(suffix=="l"){
         counter1=document.getElementById("counter2a");
         counter2=document.getElementById("counter2b");
     }
+    else if(suffix=="l"){
+        counter1=document.getElementById("counter1a");
+        counter2=document.getElementById("counter1b");
+    }
     else{console.log("got invalid lifecounter div element suffix!");}
-    for(i=0;i<8;i++){
+    for(i=0;i<8;i++){    //0-8
         let div=document.createElement('div');
         div.id=`b`+(i+1)+suffix;
         counter1.appendChild(div);
     }
-    for(i=9;i<16;i++){
+    for(i=9;i<16;i++){      //9-16
         let div=document.createElement('div');
         div.id=`b`+(i)+suffix;
         counter2.appendChild(div);
     }
 }
+//LIFE COUNTER ADD
+function counter_add(suffix){
+    let counter1;
+    let counter2;  
+    if(suffix=="d"){            //figure out which of 2 pairs of divs to populate
+        counter1="counter2a";
+        counter2="counter2b";
+    }
+    else if(suffix=="l"){
+        counter1="counter1a";
+        counter2="counter1b";
+    }
+    else{console.log("got bad suffix in counter_add function");}
+    let life_1= Array.from(document.getElementById(counter1).children);	
+    let life_2= Array.from(document.getElementById(counter2).children);
+    if (life_2.length<7){       //populate the div that has room
+        let div=document.createElement('div');
+        div.id=`b`+(life_2.length+8)+suffix;
+        console.log(`b`+(life_2.length+8)+suffix);
+        document.getElementById(counter2).insertBefore(div,document.getElementById(counter2).firstChild);
+    }
+    else if(life_2.length>=7 && life_1.length<8){
+        let div=document.createElement('div');
+        div.id=`b`+(life_1.length+1)+suffix;
+        console.log(div.id);
+        document.getElementById(counter1).insertBefore(div,document.getElementById(counter1).firstChild);
+    }
+    else{console.log("can't add more lives since they are full!");}
+}
+//LIFE COUNTER REMOVE
+function counter_remove(suffix){
+    let counter1;
+    let counter2;  
+    if(suffix=="d"){            //figure out which of 2 pairs of divs to populate
+        counter1="counter2a";
+        counter2="counter2b";
+    }
+    else if(suffix=="l"){
+        counter1="counter1a";
+        counter2="counter1b";
+    }
+    let life_1= Array.from(document.getElementById(counter1).children);	
+    let life_2= Array.from(document.getElementById(counter2).children);
+if(life_2.length>0){
+    console.log("LIFE row 2");
+    console.log(Array.from(document.getElementById(counter2).children));
+    document.getElementById(counter2).removeChild(document.getElementById(counter2).firstChild);
+    console.log(Array.from(document.getElementById(counter2).children));
+}
+else if (life_2.length<=0 && life_1.length>0){
+    console.log('life1!');
+    document.getElementById(counter1).removeChild(document.getElementById(counter1).firstChild);  
+}
 
 
+}
 counter_fill("d");
 counter_fill("l");
 player_deck_div=document.getElementById("deck_2");
 
 reset_button=document.getElementById("reset");
+add_button=document.getElementById("addHP");
+remove_button=document.getElementById("removeHP");
 reset_button.onclick=reset_game;
+add_button.onclick=function(){counter_add("d");counter_add("l");};
+remove_button.onclick=function(){counter_remove("d");counter_remove("l");}
 deck=create_deck(card_bases);
 card=deck.length;
 player_deck_div.innerHTML=card;

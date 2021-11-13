@@ -122,10 +122,10 @@ body{
       background-color:var(--field_color_1);  
 }
 
-#b1d, #b2d, #b3d, #b4d, #b5d, #b6d, #b7d, #b8d,#b1l, #b2l, #b3l, #b4l, #b5l, #b6l, #b7l, #b8l{
+#b1d, #b2d, #b3d, #b4d, #b5d, #b6d, #b7d, #b8d, #b1l, #b2l, #b3l, #b4l, #b5l, #b6l, #b7l, #b8l{
     display:inline-block;
     vertical-align: bottom;
-    margin-left: 5px;
+    margin-left: 2%;
     height:60%;
     width:10%;
     position:relative;
@@ -139,7 +139,7 @@ body{
   
 
 #b9d, #b10d,#b11d, #b12d, #b13d, #b14d, #b15d, #b9l, #b10l,#b11l, #b12l, #b13l, #b14l, #b15l{
-    margin-left: 5px;
+    margin-left: 2%;
     height:20%;
     width:11%;
     position:relative;

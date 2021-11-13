@@ -91,7 +91,7 @@ function unzoom(){
 //DRAW CARD
 function draw_card(deck){
     let field=document.getElementById("hand_field_2");
-    if(field.childElementCount<8){
+    if(field.childElementCount<8){                  //if  player doesn't have a full hand
         let obj;
         if (card==0){
             let message=document.getElementById("outcome");
@@ -121,23 +121,20 @@ function draw_card(deck){
 }
 //RESET
 function reset_game(){
-    deck=create_deck(card_bases);
-    card=deck.length;
-    player_deck_div.innerHTML=card;
-    player_deck_div.onclick=function(){draw_card(deck);};
+    deck=create_deck(card_bases);                               //make new random deck
+    card=deck.length;                                           //variable for number of cards left
+    player_deck_div.innerHTML=card;                             //display num of cards on deck image
+    player_deck_div.onclick=function(){draw_card(deck);};       //handle player draw
     let field=document.getElementById("hand_field_2");
-    field.innerHTML="";
-    document.getElementById("counter1a").innerHTML="";
+    field.innerHTML="";                                         //empty player hand space div
+    document.getElementById("counter1a").innerHTML="";          //empty out life counters
     document.getElementById("counter1b").innerHTML="";
     document.getElementById("counter2a").innerHTML="";
     document.getElementById("counter2b").innerHTML="";
-    counter_fill("d");
+    counter_fill("d");                                          //fill life counters
     counter_fill("l");
 }
-//LIFE COUNTER FILL              //html id is either b1d-b15d  or b1l-b15l
-function counter_fill(suffix){   //sufix = either "d" for player or "l" for opponent;
-    let counter1;
-    let counter2;
+function assign_counter(suffix){
     if(suffix=="d"){
         counter1=document.getElementById("counter2a");
         counter2=document.getElementById("counter2b");
@@ -146,13 +143,24 @@ function counter_fill(suffix){   //sufix = either "d" for player or "l" for oppo
         counter1=document.getElementById("counter1a");
         counter2=document.getElementById("counter1b");
     }
-    else{console.log("got invalid lifecounter div element suffix!");}
-    for(i=0;i<8;i++){    //0-8
+    let counters=[];
+    counters.push(counter1);
+    counters.push(counter2);  
+    return counters;
+}
+//LIFE COUNTER FILL              //html id is either b1d-b15d  or b1l-b15l
+function counter_fill(suffix){   //sufix = either "d" for player or "l" for opponent;
+    let counter1;
+    let counter2;
+    let counters=assign_counter(suffix);        //decide if player or oponent lifcounter is targeted
+    [counter1,counter2]=counters;
+    if (suffix!="d"&&suffix!="l"){console.log("got invalid lifecounter div element suffix!");}
+    for(i=0;i<8;i++){    //0-8                   fill back row first
         let div=document.createElement('div');
         div.id=`b`+(i+1)+suffix;
         counter1.appendChild(div);
     }
-    for(i=9;i<16;i++){      //9-16
+    for(i=9;i<16;i++){      //9-16              fill fron row second
         let div=document.createElement('div');
         div.id=`b`+(i)+suffix;
         counter2.appendChild(div);
@@ -162,28 +170,20 @@ function counter_fill(suffix){   //sufix = either "d" for player or "l" for oppo
 function counter_add(suffix){
     let counter1;
     let counter2;  
-    if(suffix=="d"){            //figure out which of 2 pairs of divs to populate
-        counter1="counter2a";
-        counter2="counter2b";
-    }
-    else if(suffix=="l"){
-        counter1="counter1a";
-        counter2="counter1b";
-    }
-    else{console.log("got bad suffix in counter_add function");}
-    let life_1= Array.from(document.getElementById(counter1).children);	
-    let life_2= Array.from(document.getElementById(counter2).children);
-    if (life_2.length<7){       //populate the div that has room
+    let counters=assign_counter(suffix);        //decide if player or oponent lifcounter is targeted
+    [counter1,counter2]=counters;
+    if (suffix!="d"&&suffix!="l"){console.log("got bad suffix in counter_add function");}
+    let life_1= Array.from(counter1.children);	
+    let life_2= Array.from(counter2.children);
+    if (life_2.length<7){                           //check if front row lifecounter is not full
         let div=document.createElement('div');
-        div.id=`b`+(life_2.length+8)+suffix;
-        console.log(`b`+(life_2.length+8)+suffix);
-        document.getElementById(counter2).insertBefore(div,document.getElementById(counter2).firstChild);
+        div.id=`b`+(15-life_2.length)+suffix;        //assing div id for CSS styling
+        counter2.insertBefore(div,counter2.firstChild);
     }
-    else if(life_2.length>=7 && life_1.length<8){
-        let div=document.createElement('div');
-        div.id=`b`+(life_1.length+1)+suffix;
-        console.log(div.id);
-        document.getElementById(counter1).insertBefore(div,document.getElementById(counter1).firstChild);
+    else if(life_2.length>=7 && life_1.length<8){   //check if back row lifecounter is not full while front is
+        let div=document.createElement('div');      
+        div.id=`b`+(life_1.length+1)+suffix;        //assing div id for CSS styling
+        counter1.insertBefore(div,counter1.firstChild);
     }
     else{console.log("can't add more lives since they are full!");}
 }
@@ -191,25 +191,15 @@ function counter_add(suffix){
 function counter_remove(suffix){
     let counter1;
     let counter2;  
-    if(suffix=="d"){            //figure out which of 2 pairs of divs to populate
-        counter1="counter2a";
-        counter2="counter2b";
-    }
-    else if(suffix=="l"){
-        counter1="counter1a";
-        counter2="counter1b";
-    }
-    let life_1= Array.from(document.getElementById(counter1).children);	
-    let life_2= Array.from(document.getElementById(counter2).children);
-if(life_2.length>0){
-    console.log("LIFE row 2");
-    console.log(Array.from(document.getElementById(counter2).children));
-    document.getElementById(counter2).removeChild(document.getElementById(counter2).firstChild);
-    console.log(Array.from(document.getElementById(counter2).children));
+    let counters=assign_counter(suffix);        //decide if player or oponent lifcounter is targeted
+    [counter1,counter2]=counters;
+    let life_1= Array.from(counter1.children);	//Array of current children DIVs contained in lifecounter DIV a
+    let life_2= Array.from(counter2.children);  //Array of current children DIVs contained in lifecounter DIV b
+if(life_1.length>0){                           
+    counter1.removeChild(counter1.firstChild);
 }
-else if (life_2.length<=0 && life_1.length>0){
-    console.log('life1!');
-    document.getElementById(counter1).removeChild(document.getElementById(counter1).firstChild);  
+else if (life_1.length<=0 && life_2.length>0){
+    counter2.removeChild(counter2.firstChild);  
 }
 
 

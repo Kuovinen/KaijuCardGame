@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>CARDS</title>
+		<link rel="stylesheet" href="style.css">
+        <script type="module" src="script.js" defer></script>
+	</head>
+
+
+	<body id="body">
+        <div id="side1"></div>
+        <div class="field" id="field_1">
+            <div id="discard_pile_1"></div>
+            <div id="hand_field_1"></div>
+            <div class="counter" id="counter1a"></div>
+            <div class="counter" id="counter1b"></div>   
+            <div class='card_border' id="deck_1"></div>  
+        </div>
+        <div class="field" id="field_2">
+            <div id="discard_pile_2"></div>
+            <div id="hand_field_2"></div>
+            <div class="counter" id="counter2a"></div>
+            <div class="counter" id="counter2b"></div> 
+            <div class='card_border' id="deck_2"></div>
+        </div>
+
+
+        <div id="side2"></div>
+        <button id="reset">RESET</button>
+        <button id="addHP">ADD</button>
+        <button id="removeHP">REMOVE</button>
+
+        <div id="large_card"><div class="large_img"></div><div class="large_txt"></div></div>
+        <div id="outcome"></div>
+        <form action="http://localhost:5000/about">
+            <input style="position:absolute;bottom:2rem;background-color:red; border:none;height:50px;width:50px;" type="submit" value="ABOUT" />
+        </form>
+	</body>
+
+
+</html>
+
+<!-- casd example
+<div class='card_border'draggable="true">
+    <div class='card_base_3'>
+        <div class="card_image">TECH</div>
+        <div class="card_txt_bkg"></div>
+    </div>
+</div>
+-->
